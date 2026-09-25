@@ -2,7 +2,9 @@
 
 A store adds one script tag, calls `DodoCheckout.open()`, and a checkout opens on top of the page. The customer never leaves the store, and the store never sees the card.
 
-**Live demo:** `<add the Vercel URL here after deploying>`
+**Live demo:** https://nimbus-goods.vercel.app
+
+**Source code:** https://github.com/SuchismitaBhattacharjee-developer/Nimbus-Goods
 
 The demo is a pretend store (Nimbus Goods, selling one lamp) with an **integration console** beside it. The console shows every callback the store's code receives, the test cards, and one-click buttons for the weird states.
 
@@ -248,8 +250,9 @@ The accepted risk is a host tearing down its UI on the first `onError`. The docs
 The whole repo is one Vercel project. `vercel.json` sets the install, build and output directory, plus the headers the sandbox needs.
 
 1. Import the GitHub repo into Vercel. Leave the root directory as the repo root and the framework preset as "Other"; `vercel.json` supplies the rest.
-2. Deploy. `/` is the store, `/checkout/` the checkout, `/sdk/dodo-checkout.js` the SDK.
-3. Optional: to serve the checkout from its own origin, add a second domain to the same project and set `VITE_DODO_SDK_URL=https://<that-domain>/sdk/dodo-checkout.js`.
+2. Add the environment variable `pnpm_config_manage_package_manager_versions=false` (Production and Preview). The install command already installs the exact pnpm version; without this, pnpm 12 also tries to re-provision itself from `packageManager` and fails on Vercel's build image.
+3. Deploy. `/` is the store, `/checkout/` the checkout, `/sdk/dodo-checkout.js` the SDK.
+4. Optional: to serve the checkout from its own origin, add a second domain to the same project and set `VITE_DODO_SDK_URL=https://<that-domain>/sdk/dodo-checkout.js`.
 
 There are no URLs to edit in source. The SDK derives the checkout URL from its own `<script src>`, and the store's SDK URL defaults to the same deployment (`packages/demo-site/.env`). Production builds fail if anything references `localhost`.
 
