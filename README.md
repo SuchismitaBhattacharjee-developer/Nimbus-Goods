@@ -250,7 +250,7 @@ The accepted risk is a host tearing down its UI on the first `onError`. The docs
 The whole repo is one Vercel project. `vercel.json` sets the install, build and output directory, plus the headers the sandbox needs.
 
 1. Import the GitHub repo into Vercel. Leave the root directory as the repo root and the framework preset as "Other"; `vercel.json` supplies the rest.
-2. Add the environment variable `pnpm_config_manage_package_manager_versions=false` (Production and Preview). The install command already installs the exact pnpm version; without this, pnpm 12 also tries to re-provision itself from `packageManager` and fails on Vercel's build image.
+2. Add the environment variable `ENABLE_EXPERIMENTAL_COREPACK=1` (Production and Preview). Vercel then runs the pnpm pinned in `package.json#packageManager` (12.6.0) through Corepack. Without it, the build image's own pnpm 12.x comes first on `PATH`, tries to switch itself to the pinned version, and fails with "the installed pnpm wrapper is missing".
 3. Deploy. `/` is the store, `/checkout/` the checkout, `/sdk/dodo-checkout.js` the SDK.
 4. Optional: to serve the checkout from its own origin, add a second domain to the same project and set `VITE_DODO_SDK_URL=https://<that-domain>/sdk/dodo-checkout.js`.
 
