@@ -1,0 +1,20 @@
+{
+  "name": "@nimbus-goods/sdk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DodoCheckout: the one-file embeddable checkout SDK.",
+  "type": "module",
+  "types": "./src/dodo-checkout.ts",
+  "exports": {
+    ".": "./src/dodo-checkout.ts",
+    "./protocol": "./src/protocol.ts"
+  },
+  "scripts": {
+    "build": "esbuild src/dodo-checkout.ts --bundle --format=iife --target=es2019 --minify --sourcemap --legal-comments=none --outfile=dist/dodo-checkout.js",
+    "dev": "esbuild src/dodo-checkout.ts --bundle --format=iife --target=es2019 --sourcemap --outfile=dist/dodo-checkout.js --watch=forever",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

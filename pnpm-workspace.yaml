@@ -1,0 +1,14 @@
+packages:
+  - packages/*
+
+# A flat, npm-style node_modules: works on filesystems without symlink support (e.g. exFAT
+# external drives). For the same reason the packages don't link each other through
+# node_modules; the SDK's source is reached through a Vite/TS alias instead (see the
+# checkout-app and demo-site tsconfig "paths").
+nodeLinker: hoisted
+
+minimumReleaseAgeExclude:
+  - vite@8.3.1
+
+allowBuilds:
+  esbuild: true

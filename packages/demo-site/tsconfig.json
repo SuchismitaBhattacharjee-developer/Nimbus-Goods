@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    // Types only. The store gets the SDK's code the way any merchant does: a <script> tag.
+    "paths": {
+      "@nimbus-goods/sdk": ["../sdk/src/dodo-checkout.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "paths": {
+      "@nimbus-goods/sdk/protocol": ["../sdk/src/protocol.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

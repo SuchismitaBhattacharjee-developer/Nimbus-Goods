@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Nimbus Cloud Lamp: a soft, dimmable cloud of warm light. A demo store for the Dodo embeddable checkout." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18.5a4.5 4.5 0 01-.6-8.96A6 6 0 0117.8 8.2 4.9 4.9 0 0117.5 18.5z' fill='%231c2233'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    <title>Nimbus Cloud Lamp · Nimbus Goods</title>
+
+    <!-- The whole integration: one script tag... -->
+    <script defer src="%VITE_DODO_SDK_URL%"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="store">
+        <header class="nav">
+          <a class="logo" href="/" aria-label="Nimbus Goods home">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><path d="M7 18.5a4.5 4.5 0 01-.6-8.96A6 6 0 0117.8 8.2 4.9 4.9 0 0117.5 18.5z" fill="currentColor" /></svg>
+            Nimbus Goods
+          </a>
+          <p class="nav-note">Free shipping on every order</p>
+        </header>
+
+        <main class="product" id="main">
+          <figure class="gallery">
+            <svg class="lamp-art" viewBox="0 0 600 600" role="img" aria-label="A cloud-shaped lamp glowing warm white on a slim brass stand">
+              <defs>
+                <radialGradient id="room" cx="50%" cy="40%" r="75%">
+                  <stop offset="0" stop-color="#2b3350" />
+                  <stop offset="1" stop-color="#141827" />
+                </radialGradient>
+                <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#ffe9b0" stop-opacity=".55" />
+                  <stop offset=".55" stop-color="#ffcf7a" stop-opacity=".12" />
+                  <stop offset="1" stop-color="#ffcf7a" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="cloud" cx="45%" cy="38%" r="70%">
+                  <stop offset="0" stop-color="#fffdf5" />
+                  <stop offset=".6" stop-color="#fff0c9" />
+                  <stop offset="1" stop-color="#f2d596" />
+                </radialGradient>
+                <linearGradient id="brass" x1="0" x2="1">
+                  <stop offset="0" stop-color="#8d7a55" />
+                  <stop offset=".5" stop-color="#d8c291" />
+                  <stop offset="1" stop-color="#8d7a55" />
+                </linearGradient>
+              </defs>
+              <rect width="600" height="600" fill="url(#room)" />
+              <g fill="#fff" opacity=".5">
+                <circle cx="92" cy="96" r="1.6" /><circle cx="160" cy="62" r="1.1" /><circle cx="506" cy="88" r="1.8" />
+                <circle cx="452" cy="150" r="1.1" /><circle cx="530" cy="236" r="1.3" /><circle cx="70" cy="220" r="1.2" />
+              </g>
+              <ellipse cx="300" cy="258" rx="250" ry="210" fill="url(#halo)" />
+              <path d="M178 330a62 62 0 01-6-124 88 88 0 01166-30 72 72 0 01100 58 50 50 0 01-6 96z" fill="url(#cloud)" />
+              <rect x="294" y="330" width="12" height="150" rx="6" fill="url(#brass)" />
+              <ellipse cx="300" cy="492" rx="78" ry="14" fill="url(#brass)" />
+              <ellipse cx="300" cy="508" rx="140" ry="14" fill="#000" opacity=".25" />
+            </svg>
+          </figure>
+
+          <section class="info" aria-labelledby="product-title">
+            <p class="eyebrow">Lighting</p>
+            <h1 id="product-title">Nimbus Cloud Lamp</h1>
+            <p class="price"><span>$48.00</span> <span class="price-note">Free shipping · 30-day returns</span></p>
+            <p class="description">
+              A soft cloud of warm light for the corner that needs it. Hand-poured, frosted diffuser on a slim brass
+              stand, dimmable from reading-bright to a gentle night glow.
+            </p>
+            <ul class="features">
+              <li><strong>Warm 2700K</strong> glow, stepless dimming</li>
+              <li><strong>USB-C</strong> powered, 2 m braided cable</li>
+              <li><strong>Hand-finished</strong>, 24 cm tall</li>
+            </ul>
+
+            <button type="button" class="buy" id="buy">Buy now · $48.00</button>
+            <p class="buy-status" id="buy-status" role="status" aria-live="polite"></p>
+            <p class="secure-note">
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><rect x="2" y="5.25" width="8" height="5.5" rx="1.3" fill="currentColor" /><path d="M4 5.25V3.8a2 2 0 014 0v1.45" stroke="currentColor" stroke-width="1.3" fill="none" /></svg>
+              Secure checkout by Dodo Payments. You won't leave this page.
+            </p>
+          </section>
+        </main>
+      </div>
+
+      <aside class="console" aria-labelledby="console-title">
+        <div class="console-head">
+          <div>
+            <h2 id="console-title">Integration console</h2>
+            <p>Everything the store's code can see. Card details never appear here.</p>
+          </div>
+          <button type="button" class="ghost" id="clear-log">Clear</button>
+        </div>
+
+        <ol class="log" id="log" aria-live="polite" aria-label="Callback log"></ol>
+
+        <section class="panel" aria-labelledby="cards-title">
+          <h3 id="cards-title">Test cards</h3>
+          <p class="panel-note">Any future expiry and any CVC. The checkout also has a "Test cards" shortcut.</p>
+          <ul class="cards" id="cards"></ul>
+        </section>
+
+        <section class="panel" aria-labelledby="edge-title">
+          <h3 id="edge-title">Weird states</h3>
+          <div class="edge-grid">
+            <button type="button" class="edge" data-edge="double">
+              <strong>Click Buy twice</strong><span>Calls open() twice in a row</span>
+            </button>
+            <button type="button" class="edge" data-edge="missing">
+              <strong>Unavailable product</strong><span>Opens a product that doesn't exist</span>
+            </button>
+            <button type="button" class="edge" data-edge="host-close">
+              <strong>Host closes it</strong><span>Store calls close() after 6 s</span>
+            </button>
+            <button type="button" class="edge" data-edge="forge">
+              <strong>Forge a success</strong><span>Store posts a fake PAYMENT_SUCCESS</span>
+            </button>
+          </div>
+          <p class="panel-note">To see a load failure, switch DevTools to Offline and click Buy.</p>
+        </section>
+
+        <details class="panel snippet">
+          <summary>The integration code</summary>
+          <pre><code>&lt;script src="…/sdk/dodo-checkout.js"&gt;&lt;/script&gt;
+
+DodoCheckout.open({
+  productId: "prod_123",
+  onSuccess: ({ sessionId }) =&gt; {},
+  onError: ({ code, message }) =&gt; {},
+  onClose: ({ reason }) =&gt; {},
+});</code></pre>
+        </details>
+      </aside>
+    </div>
+  </body>
+</html>
