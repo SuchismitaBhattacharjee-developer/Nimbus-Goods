@@ -205,7 +205,7 @@ Things I think most checkouts get wrong, and what this one does instead:
 
 ### 1. A sandboxed, opaque-origin iframe rather than relying on a separate origin
 
-The brief says card details must never touch the host page. The deployment requirement was one domain: `/` for the store, `/checkout` for the checkout. Those conflict. A plain same-origin iframe gives the host page full access to `iframe.contentDocument`, card inputs included.
+The brief says card details must never touch the host page. I chose a single-domain deployment, so the demo, the hosted checkout and the SDK are served from one production origin: `/` for the store, `/checkout/` for the checkout. That choice makes isolation harder. A plain same-origin iframe gives the host page full access to `iframe.contentDocument`, card inputs included.
 
 Options:
 

@@ -148,6 +148,22 @@ test("calling open() twice keeps a single checkout", async ({ page }) => {
   expect(page.frames().filter((f) => f.url().includes("/checkout/"))).toHaveLength(1);
 });
 
+test("double-clicking Buy opens one checkout and doesn't dismiss it", async ({ page }) => {
+  await page.goto("/");
+  // A real double-click: the second click lands on the loading backdrop that the first one opened.
+  await page.getByRole("button", { name: /Buy now/ }).dblclick();
+  const frame = await checkoutFrame(page);
+  await expect(frame.getByLabel("Email")).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.locator("[data-dodo-checkout]")).toHaveCount(1);
+  expect(page.frames().filter((f) => f.url().includes("/checkout/"))).toHaveLength(1);
+  await expect(entries(page, "close")).toHaveCount(0);
+
+  await fillDetails(frame, "4242424242424242");
+  await payButton(frame).click();
+  await expect(entries(page, "success")).toHaveCount(1);
+});
+
 test("Escape dismisses: onClose(dismissed), focus and scroll restored, can reopen", async ({ page }) => {
   const frame = await openCheckout(page);
   await frame.getByLabel("Email").fill("half-typed@");

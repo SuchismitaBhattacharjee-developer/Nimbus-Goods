@@ -163,8 +163,11 @@ function open(options: CheckoutOptions): boolean {
   document.addEventListener("keydown", onKeydown, true);
   session.cleanups.push(() => document.removeEventListener("keydown", onKeydown, true));
 
+  // Not while loading: that backdrop appears under the pointer the instant Buy is clicked, so the
+  // second half of a double-click (or an impatient repeat click) would land on it. Escape still
+  // works, and a load that stalls turns into Try again / Close.
   q(root, ".backdrop").addEventListener("click", () => {
-    if (session.phase !== "ready") finish(session, "dismissed");
+    if (session.phase === "load_failed") finish(session, "dismissed");
   });
   q(root, "[data-action=retry]").addEventListener("click", () => loadFrame(session, checkoutUrl, hostOrigin));
   q(root, "[data-action=close]").addEventListener("click", () => finish(session, "dismissed"));
